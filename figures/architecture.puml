@@ -1,0 +1,68 @@
+@startuml
+!define LIGHTBLUE
+!includeurl https://gist.githubusercontent.com/amgs/de57560012a8a5f0e4240f392b678a40/raw/c903c6b4f16b60b5eef3248f093497faae378f51/style.puml
+
+actor "HTTP Client" as client
+
+card "Docker Container: coffee-db-1" as db {
+    database database [
+        Coffee Shops
+    ]
+}
+
+
+card "Docker Container: coffee-app-1" as app {
+    node models{
+        rectangle CoffeeShopModel [
+            + findAll()
+            + find(id: number)
+            + create(data: json)
+        ]
+    }
+    node controllers {
+        rectangle CoffeeShopController [
+            + findAll(req,res)
+            + find(req,res)
+            + create(req,res)
+        ]
+    }
+    node views {
+        folder layouts {
+            file main.handlebars
+        }
+        folder coffeeShops {
+            file index.handlebars
+            file show.handlebars
+        }
+    }
+
+    node static_content as static {
+        folder public {
+            file "Static js+css"
+        }
+    }
+
+    node routes {
+        rectangle api [
+            + GET /coffeeShops
+            + GET /coffeeShops/:id
+            + POST /coffeeShops
+       ]
+    }
+
+    client <--> routes
+    routes <--> controllers
+    controllers <--> models
+    controllers <-- views
+    routes <-- static
+    models <--> database
+}
+
+card CDN as cdn {
+    file "Bootstrap css+js"
+    file "Leaflet css+js"
+}
+
+client <-- cdn
+
+@enduml

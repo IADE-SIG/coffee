@@ -1,0 +1,20 @@
+{{#section 'head' }}
+    <link rel="stylesheet" href="/css/coffee-shops/map.css"/>
+    <script src="/js/coffee-shops/show-map.js"></script>
+{{/section}}
+
+<div class="row">
+    <div class="col-4">
+        <label>Nome:</label> {{data.name}} <br/>
+        <label>Categoria:</label> {{data.category}} <br/>
+        <label>Rating:</label> {{data.rating}} <br/>
+        <label>Numero de Reviews:</label> {{data.num_reviews}} <br/>
+        <label>Morada:</label> <address> {{data.address}}</address>
+        <div id="data" hidden="hidden" json="{{json data}}"></div>
+        <label>Latitude:</label> {{data.location.coordinates.[1]}} <br/>
+        <label>Longitude:</label> {{data.location.coordinates.[0]}} <br/>
+    </div>
+    <div class="col-8">
+        <div id="map"></div>
+    </div>
+</div>

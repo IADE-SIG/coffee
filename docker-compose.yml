@@ -1,4 +1,3 @@
-version: '3.1'
 services:
   db:
     image: postgis/postgis:16-3.4
@@ -10,6 +9,20 @@ services:
       POSTGRES_PASSWORD: foobar
       POSTGRES_USER: postgres
       POSTGRES_DB: mydb
+      POSTGRES_PORT: 5432
     volumes:
       - ./docker-data/db:/var/lib/postgresql/data
       - ./data/sql:/docker-entrypoint-initdb.d
+      - ./my-postgres.conf:/etc/postgresql/postgresql.conf
+  app:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    platform: linux/amd64
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    depends_on:
+      - db

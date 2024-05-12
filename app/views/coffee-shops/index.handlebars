@@ -1,0 +1,55 @@
+{{#section 'head'}}
+    <link rel="stylesheet" href="/css/coffee-shops/map.css"/>
+    <script src="/js/coffee-shops/index-map.js"></script>
+{{/section}}
+
+<div class="row">
+    <div class="col-4">
+
+        <ul>
+            {{#each data}}
+                <li><a href="/coffee-shops/{{id}}">{{name}}</a>
+                    <span class="badge rounded-pill text-bg-dark">{{rating}} ({{num_reviews}})</span>
+                    <i class="bi-pin-map-fill map-pin" lon="{{location.coordinates.[0]}}"
+                       lat="{{location.coordinates.[1]}}"></i>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="col-8">
+        <div id="map"></div>
+        <br/>
+        <form id="coffee-shop-new" class="row g-3" action="/coffee-shops" method="post">
+            <div class="col-4">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            </div>
+            <div class="col-3">
+                <select class="form-select" id="category" name="category">
+                    <option selected>Coffee shop</option>
+                    <option>Cafe</option>
+                    <option>Expresso bar</option>
+                    <option>Tea house</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <input type="text" class="form-control" id="rating" name="rating" placeholder="Rating">
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" id="num_reviews" name="num_reviews"
+                       placeholder="Number of Reviews">
+            </div>
+            <div class="col-12">
+                <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control" id="lon" name="lon" placeholder="longitude">
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control" id="lat" name="lat" placeholder="latitude">
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-dark">Add Coffee Shop</button>
+            </div>
+        </form>
+    </div>
+</div>

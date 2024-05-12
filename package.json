@@ -1,12 +1,24 @@
 {
   "name": "coffee",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
+  "description": "GIS sample application.",
+  "main": "app/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app/index.js -b 0.0.0.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "GIS",
+    "coffee"
+  ],
+  "author": "amgs",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
 }
