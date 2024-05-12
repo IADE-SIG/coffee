@@ -15,6 +15,28 @@ A arquitetura é a seguinte:
 | GET | /coffee-shops/:id | Detalhe de um registo. |
 | POST | /coffee-shops | Criação de um registo. |    
 
+### Estrutura do projeto
+
+```
+.
+├── app
+│   ├── controllers - Controlador da aplicação (lógica de negócio)
+│   ├── models - Representação dos dados (interação com BD)
+│   ├── routes - Rotas da aplicação (definição dos endpoints) 
+│   ├── views - Vistas da aplicação (handlebars)
+│   └── public - Conteúdo estático (CSS e JS)
+├── data - Dados de inicialização da BD.
+├── figures - Diagramas.
+├── .env - Variáveis de ambiente.
+├── my-postgres.conf - Configuração do PostgresSQL.
+├── docker-compose.yml
+├── app.Dockerfile - Dockerfile para a aplicação NodeJS
+├── README.md
+├── index.js
+└── package.json
+```
+
+
 ### Instruções
 
 O projeto está distribuído num docker-compose, pelo que para correr o projeto basta executar o seguinte comando:
